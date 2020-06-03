@@ -18,7 +18,11 @@ import React, { Component } from 'react'
 import { useIdleCacheEviction } from 'react-apollo-idle-cache-eviction'
 
 const AppRoot = () => {
-  useIdleCacheEviction();
+  useIdleCacheEviction({
+    checkInterval: 10 * 1000,
+    minimumIdleMs: 30 * 1000,
+    onCacheClear: () => console.log("Cleared!")
+  });
 
   return (
     <div>This is a page.</div>
